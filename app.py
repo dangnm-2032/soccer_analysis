@@ -8,7 +8,9 @@ import os
 app = Flask(__name__)
 
 UPLOAD_DIR = "uploads"
+RESULT_DIR = "results"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
+os.makedirs(RESULT_DIR, exist_ok=True)
 
 # In-memory stores
 job_queue = queue.Queue()

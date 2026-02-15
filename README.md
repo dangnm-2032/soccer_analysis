@@ -4,12 +4,22 @@
 - Python 3.9
 
 ## Install
-- python3 -m .env
-- source .env/bin/activate
-- pip install -r requirements.txt
+```bash
+git clone --recurse-submodules https://github.com/dangnm-2032/soccer_analysis.git
+
+cd soccer_analysis
+
+python3 -m .env
+
+source .env/bin/activate
+
+pip install -r requirements.txt
+```
 
 ## Run
-- python app.py
+```bash
+python app.py
+```
 
 ## Usage
 ### Upload video to analyze

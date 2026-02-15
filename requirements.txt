@@ -1,0 +1,24 @@
+torch==1.11.0+cu113
+torchvision==0.12.0+cu113
+torchaudio==0.11.0
+--extra-index-url https://download.pytorch.org/whl/cu113
+
+flask
+scikit-learn
+ultralytics
+supervision
+numpy<2
+opencv-python
+scipy
+
+-r components/centroids_reid/requirements.txt
+
+mmcv-full==1.4.8
+-f https://download.openmmlab.com/mmcv/dist/cu111/torch1.9.0/index.html
+
+-e components/ViTPose
+
+timm==0.6.13
+einops
+lmdb
+nltk

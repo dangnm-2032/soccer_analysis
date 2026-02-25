@@ -34,7 +34,7 @@ python app.py
 ## Usage
 ### Upload video to analyze
 ```bash
-curl -X POST http://localhost:5000/analyze -F "file=@path/to/your/video.mp4
+curl -X POST http://localhost:5000/analyze -F "video=@path/to/your/video.mp4
 ```
 ### Check status
 ```bash

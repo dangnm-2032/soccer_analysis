@@ -5,6 +5,8 @@ import queue
 import time
 import os
 
+from analyze import main
+
 app = Flask(__name__)
 
 UPLOAD_DIR = "uploads"
@@ -31,10 +33,7 @@ def worker():
             jobs[job_id]["status"] = "PROCESSING"
 
             # ---- Simulate heavy video analysis ----
-            command = f"python analyze.py {video_path} {job_id}"
-            success = os.system(command) == 0
-            if not success:
-                raise Exception("Analysis failed")
+            main(job_id, video_path)
 
             jobs[job_id]["status"] = "DONE"
 
@@ -104,7 +103,7 @@ def get_result(job_id):
             "message": "Result not ready"
         }), 202
 
-    file_path = os.path.join("results", f"{job_id}.pkl")
+    file_path = os.path.join("components/sn-gamestate/outputs", job_id, "visualization/videos", f"{job_id}.mp4")
     return send_file(
         file_path,
         as_attachment=True,     # forces download

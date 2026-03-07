@@ -5,25 +5,20 @@
 
 ## Install
 ```bash
-git clone --recurse-submodules https://github.com/dangnm-2032/soccer_analysis.git
+git clone https://github.com/dangnm-2032/soccer_analysis.git
 
 cd soccer_analysis
 
-Download https://drive.google.com/file/d/1bSUNpvMfJkvCFOu-TK-o7iGY1p-9BxmO/view?usp=sharing and place to components/centroids_reid/models
+uv venv --python 3.9
+uv pip install -r requirements.txt 
 
-Download https://1drv.ms/u/s!AimBgYV7JjTlgShLMI-kkmvNfF_h?e=dEhGHe and place to components/ViTPose/checkpoints
-
-Download https://drive.google.com/file/d/1uRln22tlhneVt3P6MePmVxBWSLMsL3bm/view?usp=sharing and place to components/models
-
-Download https://drive.google.com/file/d/18HAuZbge3z8TSfRiX_FzsnKgiBs-RRNw/view?usp=sharing and place to components/models
-
-Get yolo-based detector model and place to models/
-
-python3 -m .env
-
-source .env/bin/activate
-
-pip install -r requirements.txt
+cd components/
+git clone https://github.com/SoccerNet/sn-gamestate.git
+cd sn-gamestate
+uv venv --python 3.9
+uv pip install -e .
+uv run mim install mmcv==2.0.1
+uv pip install transformers==4.47.1
 ```
 
 ## Run

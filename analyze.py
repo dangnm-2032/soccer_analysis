@@ -30,11 +30,11 @@ def extract_frames(video_path, job_id):
         f"{output_dir}/%06d.jpg"
     ]
 
-    subprocess.run(command, check=True)
+    subprocess.run(command, check=True, stdout=subprocess.DEVNULL)
 
 def run():
     command = "cd components/sn-gamestate && uv run tracklab -cn soccernet"
-    subprocess.run(command, check=True, shell=True)
+    subprocess.run(command, check=True, shell=True, stdout=subprocess.DEVNULL)
 
 def main(job_id, video_path):
     update_config(job_id)

@@ -3,6 +3,7 @@ import uuid
 import threading
 import queue
 import time
+import subprocess
 import os
 
 from analyze import main
@@ -103,10 +104,11 @@ def get_result(job_id):
             "message": "Result not ready"
         }), 202
 
-    file_path = os.path.join("components/sn-gamestate/outputs", job_id, "visualization/videos", f"{job_id}.mp4")
+    file_path = os.path.join("components/sn-gamestate/outputs", job_id, "states", "sn-gamestate.pklz")
     return send_file(
         file_path,
         as_attachment=True,     # forces download
+        download_name=job_id + ".pklz"
     )
 
 

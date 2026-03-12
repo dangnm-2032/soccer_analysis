@@ -7,3 +7,6 @@
 [submodule "components/centroids_reid"]
 	path = components/centroids_reid
 	url = https://github.com/mikwieczorek/centroids-reid
+[submodule "components/sn-gamestate"]
+	path = components/sn-gamestate
+	url = https://github.com/dangnm-2032/sn-gamestate.git

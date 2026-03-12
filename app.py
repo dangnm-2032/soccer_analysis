@@ -3,7 +3,10 @@ import uuid
 import threading
 import queue
 import time
+import subprocess
 import os
+
+from analyze import main
 
 app = Flask(__name__)
 
@@ -31,10 +34,7 @@ def worker():
             jobs[job_id]["status"] = "PROCESSING"
 
             # ---- Simulate heavy video analysis ----
-            command = f"python analyze.py {video_path} {job_id}"
-            success = os.system(command) == 0
-            if not success:
-                raise Exception("Analysis failed")
+            main(job_id, video_path)
 
             jobs[job_id]["status"] = "DONE"
 
@@ -104,10 +104,11 @@ def get_result(job_id):
             "message": "Result not ready"
         }), 202
 
-    file_path = os.path.join("results", f"{job_id}.pkl")
+    file_path = os.path.join("components/sn-gamestate/outputs", job_id, "states", "sn-gamestate.pklz")
     return send_file(
         file_path,
         as_attachment=True,     # forces download
+        download_name=job_id + ".pklz"
     )
 
 

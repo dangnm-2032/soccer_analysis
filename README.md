@@ -3,27 +3,38 @@
 ## Prequiste
 - Python 3.9
 
-## Install
+## Install for Server
 ```bash
-git clone https://github.com/dangnm-2032/soccer_analysis.git
+git clone --recurse-submodules https://github.com/dangnm-2032/soccer_analysis.git
 
 cd soccer_analysis
 
 uv venv --python 3.9
 uv pip install -r requirements.txt 
 
-cd components/
-git clone https://github.com/SoccerNet/sn-gamestate.git
-cd sn-gamestate
+cd components/sn-gamestate
 uv venv --python 3.9
 uv pip install -e .
 uv run mim install mmcv==2.0.1
-uv pip install transformers==4.47.1
+uv pip install transformers==4.47.
 ```
 
-## Run
+## Install for Client
+```bash
+git clone https://github.com/dangnm-2032/sn-gamestate.git
+cd sn-gamestate
+uv venv --python 3.9
+uv pip install -e .
+```
+
+## Run for Server
 ```bash
 python app.py
+```
+
+## Run for Client
+```bash
+python visualize.py --video <video_path> --job-id <job_id> --state <state_path>
 ```
 
 ## Usage

@@ -32,12 +32,12 @@ jobs = {}
 # ---------------------------
 def worker():
     while True:
-        job_id, video_path, callback_url, video_id = job_queue.get()
+        job_id, video_path, callback_url, video_id, csv_path = job_queue.get()
         try:
             jobs[job_id]["status"] = "PROCESSING"
 
             # ---- Simulate heavy video analysis ----
-            main(job_id, video_path, callback_url, video_id)
+            main(job_id, video_path, callback_url, video_id, csv_path)
 
             jobs[job_id]["status"] = "DONE"
 
@@ -63,6 +63,7 @@ def analyze_video():
         return jsonify({"error": "No video_path provided"}), 400
 
     video_path = data["video_path"]
+    csv_path = data['csv_path']
 
     # Validate path
     if not isinstance(video_path, str) or video_path.strip() == "":
@@ -86,7 +87,7 @@ def analyze_video():
     }
 
     # 👇 push vào queue như cũ
-    job_queue.put((job_id, video_path, callback_url, video_id))
+    job_queue.put((job_id, video_path, callback_url, video_id, csv_path))
 
     return jsonify({
         "queue_id": job_id,

@@ -120,7 +120,7 @@ def stream_video(filename):
     rv = Response(data, 206, mimetype='video/mp4')
     rv.headers.add('Content-Range', f'bytes {byte1}-{byte1 + length - 1}/{size}')
     rv.headers.add('Accept-Ranges', 'bytes')
-    rv.headers.add('Content-Length', str(length))
+    # rv.headers.add('Content-Length', str(length))
 
     return rv
 @app.route("/status/<job_id>", methods=["GET"])
